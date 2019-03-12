@@ -29,30 +29,28 @@ suite('Unit Tests', function(){
     });
     
     test('Fractional Input', function(done) {
-      var input = '2/3mi';
-      assert.equal(convertHandler.getNum(input), 3/1);
+      var input = '2/4mi';
+      assert.equal(convertHandler.getNum(input), 0.5);
       done();
     });
     
     test('Fractional Input w/ Decimal', function(done) {
-      var input1 = '2.1/3mi';
-      var input2 = '3/2.1mi';
-      assert.equal(convertHandler.getNum(input1), 2.1/3);
-      assert.equal(convertHandler.getNum(input1), 3/2.1);
+      var input1 = '3.2/4mi';
+      // var input2 = '4/3.2mi';
+      assert.equal(convertHandler.getNum(input1), 0.8);
+      // assert.equal(convertHandler.getNum(input2), 0.71429);
       done();
     });
     
     test('Invalid Input (double fraction)', function(done) {
       var invalidInput = '3/2/2mi';
-      assert.notEqual(convertHandler.getNum(invalidInput), 3/2/2);
+      assert.equal(convertHandler.getNum(invalidInput), 'Invalid number');
       done();
     });
     
     test('No Numerical Input', function(done) {
       var noInput = '';
-      var noNumber = 'mi';
-      assert.notEqual(convertHandler.getNum(noInput), '');
-      assert.notEequal(convertHandler.getNum(noNumber), 'mi');
+      assert.equal(convertHandler.getNum(noInput), 1);
       done();
     }); 
     
@@ -70,11 +68,9 @@ suite('Unit Tests', function(){
     });
     
     test('Unknown Unit Input', function(done) {
-      var input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
-      input.forEach(function(ele) {
-        //assert
-        assert.notEqual(convertHandler.getUnit(ele))
-      });
+      var input = 'GALb';
+      //asser
+      assert.equal(convertHandler.getUnit(input), 'Invalid unit')
       done();
     });  
     

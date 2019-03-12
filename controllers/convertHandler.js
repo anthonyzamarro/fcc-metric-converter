@@ -7,36 +7,72 @@
 */
 
 function ConvertHandler() {
+
+  // check for double fraction
+  const _hasDoubles = (number) => {
+    let doubleFraction = number.split('').some(function(v,i,a){
+     return a.lastIndexOf(v)!=i;
+    });
+    return doubleFraction;
+  }
+
+  const _divided = (number) => {
+    let divided = number.split('/')
+        .map(n => parseFloat(n));
+    return divided.reduce((a,c) => a / c);
+  }
   
   this.getNum = function(input) {
     var result;
     let num = input.split(/[a-zA-Z]/gi)[0];
-    
+
+    // return 1 if input is empty string
+    if (num === '') result = 1;
+
+    if (parseFloat(num)) result = num;
+    // check if input is a fraction
     if(num.includes('/')) {
-      let dupes = num.split('').reduce(function (accumulator, currentValue) {
-        if (accumulator.indexOf(currentValue) === -1) {
-          accumulator.push(currentValue);
+      // has double fractions
+      if (_hasDoubles(num)) { 
+        result = 'Invalid number';
+        return result;
+      }
+
+      // has decimal with fractions
+      // if (num.includes('.')) {
+      //   result = _decimalWithFraction(num);
+      //   return result;
+      // } else {
+      //   result = 
+      // }
+      result = _divided(num);
+      return result;
+
+    } else {
+      if (num.includes('.')) {
+        // has double decimals
+        if (_hasDoubles(num)) {
+          result = 'Invalid number';
+          return result;
         }
-        return accumulator
-      }, []);
-      console.log(dupes)
-      
+      }
+
     }
-    
-    
-    // if (num[0] === '') {
-    //   result = 1;
-    // } else {
-    //   result = 1;
-    // }
+    // console.log(`result ${result}`)
     return result;
   };
   
   
   
   this.getUnit = function(input) {
-    var result;
-    
+    const units = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
+    let unit = input.split(/[^a-zA-Z]/gi).join(''), result;
+    if (!units.includes(unit)) {
+      result = 'Invalid unit';
+    } else {
+      result = unit;
+    }
+    console.log(`result ${result}`);
     return result;
   };
   
