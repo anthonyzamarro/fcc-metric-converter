@@ -72,12 +72,53 @@ function ConvertHandler() {
     } else {
       result = unit;
     }
-    console.log(`result ${result}`);
+    // console.log(`result ${result}`);
     return result;
   };
   
   this.getReturnUnit = function(initUnit) {
     var result;
+      switch(initUnit) {
+        case 'gal':
+          result = 'l';
+          break;
+        case 'GAL':
+          result = 'L';
+          break;
+        case 'mi':
+          result = 'km';
+          break;
+        case 'MI':
+          result = 'KM';
+          break;
+        case 'lbs':
+          result = 'kg';
+          break;
+        case 'LBS':
+          result = 'KG';
+          break;
+        case 'l':
+          result = 'gal';
+          break;
+        case 'L':
+          result = 'GAL';
+          break;
+        case 'km':
+          result = 'mi';
+          break;
+        case 'KM':
+          result = 'MI';
+          break;
+        case 'kg':
+          result = 'lbs';
+          break;
+        case 'KG':
+          result = 'LBS';
+          break;
+        default:
+          result = 'Invalid unit';
+      }
+    // console.log(`initUnit result ${result}`)
     
     return result;
   };
