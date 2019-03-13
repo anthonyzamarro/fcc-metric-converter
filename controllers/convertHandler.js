@@ -72,7 +72,7 @@ function ConvertHandler() {
     } else {
       result = unit;
     }
-    // console.log(`result ${result}`);
+    // console.log(`getUnit result ${result}`);
     return result;
   };
   
@@ -80,40 +80,28 @@ function ConvertHandler() {
     var result;
       switch(initUnit) {
         case 'gal':
+        case 'GAL':
           result = 'l';
           break;
-        case 'GAL':
-          result = 'L';
-          break;
         case 'mi':
+        case 'MI':
           result = 'km';
           break;
-        case 'MI':
-          result = 'KM';
-          break;
         case 'lbs':
+        case 'LBS':
           result = 'kg';
           break;
-        case 'LBS':
-          result = 'KG';
-          break;
         case 'l':
+        case 'L':
           result = 'gal';
           break;
-        case 'L':
-          result = 'GAL';
-          break;
         case 'km':
+        case 'KM':
           result = 'mi';
           break;
-        case 'KM':
-          result = 'MI';
-          break;
         case 'kg':
-          result = 'lbs';
-          break;
         case 'KG':
-          result = 'LBS';
+          result = 'lbs';
           break;
         default:
           result = 'Invalid unit';
@@ -170,6 +158,7 @@ function ConvertHandler() {
   
   this.convert = function(initNum, initUnit) {
     let result;
+    let parsedInit = parseFloat(initNum);
     const galToL = 3.78541;
     const ltoGal = 0.26417;
     const lbsToKg = 0.453592;
@@ -179,22 +168,28 @@ function ConvertHandler() {
     // console.log(`initNum ${initNum} initUnit ${initUnit}`);
     switch(initUnit) {
       case 'gal':
-       result = (galToL * initNum).toFixed(5);
+      case 'GAL':
+       result = (galToL * parsedInit).toFixed(5);
        break;
       case 'l':
-        result = (ltoGal * initNum).toFixed(5);
+      case 'L':
+        result = (ltoGal * parsedInit).toFixed(5);
         break;
       case 'lbs':
-        result = (lbsToKg * initNum).toFixed(5);
+      case 'LBS':
+        result = (lbsToKg * parsedInit).toFixed(5);
         break;
       case 'kg':
-        result = (kgToLbs * initNum).toFixed(5);
+      case 'KG':
+        result = (kgToLbs * parsedInit).toFixed(5);
         break;
       case 'mi':
-        result = (miToKm * initNum).toFixed(5);
+      case 'MI':
+        result = (miToKm * parsedInit).toFixed(5);
         break;
       case 'km':
-        result = (kmToMi * initNum).toFixed(5);
+      case 'KM':
+        result = (kmToMi * parsedInit).toFixed(5);
         break;
       default: 
         result = 'Does not compute';
