@@ -10,10 +10,10 @@ function ConvertHandler() {
 
   // check for double fraction
   const _hasDoubles = (number) => {
-    let doubleFraction = number.split('').some(function(v,i,a){
+    let doubles = number.split('').some(function(v,i,a){
      return a.lastIndexOf(v)!=i;
     });
-    return doubleFraction;
+    return doubles;
   }
   
   // divide two numbers
@@ -30,36 +30,49 @@ function ConvertHandler() {
     // return 1 if input is empty string
     if (num === '') result = 1;
 
-    if (parseFloat(num)) result = num;
-    // check if input is a fraction
-    if(num.includes('/')) {
-      // has double fractions
-      if (_hasDoubles(num)) { 
-        result = 'Invalid number';
-        return result;
-      }
+    if (!num.includes('/')) {
+      if (_hasDoubles(num)) {
+        return result = 'Invalid number'
+      } else {
 
-      // has decimal with fractions
-      if (num.includes('.')) {
-        result = _divided(num);
-        return result;
+        return result = parseFloat(num);
       }
-      result = _divided(num);
-      return result;
-
     } else {
-      if (num.includes('.')) {
-        // has double decimals
-        if (_hasDoubles(num)) {
-          result = 'Invalid number';
-          return result;
-        } else { 
-          result = num;
-          return result;
-        }
-      }
-
+      console.log(num)
     }
+
+    console.log(`result ${result} ${typeof result}`)
+
+    // if (parseFloat(num)) result = num;
+    // check if input is a fraction
+    // if(num.includes('/')) {
+    //   // has double fractions
+    //   if (_hasDoubles(num)) { 
+    //     result = 'Invalid number';
+    //     return result;
+    //   }
+
+    //   // has decimal with fractions
+    //   if (num.includes('.')) {
+    //     result = _divided(num);
+    //     return result;
+    //   }
+    //   result = _divided(num);
+    //   return result;
+
+    // } else {
+    //   if (num.includes('.')) {
+    //     // has double decimals
+    //     if (_hasDoubles(num)) {
+    //       result = 'Invalid number';
+    //       return result;
+    //     } else { 
+    //       result = num;
+    //       return result;
+    //     }
+    //   }
+
+    // }
     // console.log(`result ${result}`)
     return result;
   }; 
