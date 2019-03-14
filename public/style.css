@@ -1,7 +1,6 @@
 body {
 	padding: 10px;
-	border: 4px solid #333;
-	box-shadow: 0px 0px 3px;
+  background: #efefef;
 }
 
 h1 {
@@ -10,7 +9,11 @@ h1 {
 
 .container {
 	max-width: 960px;
-    margin: auto;
+  margin: auto;
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 3px;
+  background: #1d1b1b;
+  color: #ec4d37;
 }
 
 input[type="text"] {
@@ -31,11 +34,15 @@ input[type="submit"] {
     left: -8px;
     cursor: pointer;
 }
+
+input[type="submit"]:focus { 
+	outline-style: none;
+}
+
 input[type="submit"]:hover {
 	background-color: #777;
 	border: 3px solid black;
 	color: #fff;
-	outline-style: none;
 }
 
 .result-container {
@@ -48,6 +55,7 @@ input[type="submit"]:hover {
 
 .jsonResult {
 	background: #ededed;
+  word-break: break-word;
 }
 
 @media screen and (max-width: 560px) {

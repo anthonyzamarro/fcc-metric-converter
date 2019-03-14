@@ -8,10 +8,10 @@
 
 function ConvertHandler() {
 
-  // check for double fraction
+  // check for double fraction or decimal point
   const _hasDoubles = (number) => {
     let doubles = number.split('').some(function(v,i,a){
-     return a.lastIndexOf(v)!=i;
+      if (!v.match(/[\d]/)) return a.lastIndexOf(v)!=i;
     });
     return doubles;
   }
@@ -29,19 +29,25 @@ function ConvertHandler() {
 
     // return 1 if input is empty string
     if (num === '') result = 1;
+    
+    
 
     if (!num.includes('/')) {
       if (_hasDoubles(num)) {
         return result = 'Invalid number'
       } else {
-
         return result = parseFloat(num);
       }
     } else {
-      console.log(num)
+      if (_hasDoubles(num)) {
+        return result = 'Invalid number'
+      } else {
+        result = _divided(num);
+        return result;
+      }
     }
 
-    console.log(`result ${result} ${typeof result}`)
+    // console.log(`result ${result} ${typeof result}`)
 
     // if (parseFloat(num)) result = num;
     // check if input is a fraction
